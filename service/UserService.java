@@ -1,10 +1,14 @@
-package SpringAop;
+package SpringAop.service;
 
+import SpringAop.UserDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-
+/*相当于<bean id="userService" class="com.itmayiedu.service.UserService">
+		<property name="userDao" ref="userDao"></property>
+	</bean>
+* */
 @Service
 public class UserService {
     /**
@@ -13,16 +17,14 @@ public class UserService {
     @Resource
     private UserDao userDao;
 
-    @Autowired
-    private Aop aop;
     public void add(){
-        aop.begin();
+      //  int i=1/0;
         System.out.println("业务逻辑层……");
         userDao.add();
-        aop.commit();
     }
 
     public void setUserDao(UserDao userDao) {
+
         this.userDao = userDao;
     }
 }
